@@ -39,7 +39,7 @@ import it.cnr.isti.labsedc.glimpse.utils.DebugMessages;
 import it.cnr.isti.labsedc.glimpse.utils.Manager;
 import it.cnr.isti.labsedc.glimpse.utils.SensorType;
 
-public class MyGlimpseSmartCampusProbe extends GlimpseAbstractProbe {
+public class MyGlimpseBiecoCanProbe extends GlimpseAbstractProbe {
 
 	/**
 	 * This class provides an example of how to send messages (events) to Glimpse CEP.
@@ -55,7 +55,7 @@ public class MyGlimpseSmartCampusProbe extends GlimpseAbstractProbe {
 	public static String sensorName;
 	public static Random rand = new Random();
 
-	public MyGlimpseSmartCampusProbe(Properties settings) {
+	public MyGlimpseBiecoCanProbe(Properties settings) {
 		super(settings);
 	}
 
@@ -63,7 +63,7 @@ public class MyGlimpseSmartCampusProbe extends GlimpseAbstractProbe {
 
 		//creating a probe
 		DebugMessages.line();
-		MyGlimpseSmartCampusProbe aGenericProbe = new MyGlimpseSmartCampusProbe(
+		MyGlimpseBiecoCanProbe aGenericProbe = new MyGlimpseBiecoCanProbe(
 				Manager.createProbeSettingsPropertiesObject("org.apache.activemq.jndi.ActiveMQInitialContextFactory",
 								//"ssl://146.48.77.37:61617","system", "manager","TopicCF",
 							  "tcp://glimpse-dev.isti.cnr.it:61616","system", "manager","TopicCF",
@@ -90,7 +90,7 @@ public class MyGlimpseSmartCampusProbe extends GlimpseAbstractProbe {
 	private void generateAndSendExample_GlimpseBaseEvents_EventMachineInformationPayload() {
 		DebugMessages.ok();
 		DebugMessages.print(System.currentTimeMillis(),
-				MyGlimpseSmartCampusProbe.class.getSimpleName(),
+				MyGlimpseBiecoCanProbe.class.getSimpleName(),
 				"Creating GlimpseBaseMachineInformation message");
 		GlimpseBaseEventMachineInformation<String> message;
 		DebugMessages.ok();
@@ -114,7 +114,7 @@ public class MyGlimpseSmartCampusProbe extends GlimpseAbstractProbe {
 
 			try {
 				this.sendEventMessage(message, false);
-				DebugMessages.println(System.currentTimeMillis(), MyGlimpseSmartCampusProbe.class.getSimpleName(),
+				DebugMessages.println(System.currentTimeMillis(), MyGlimpseBiecoCanProbe.class.getSimpleName(),
 					"GlimpseBaseEventMachineInformation message sent");
 				DebugMessages.printlnMachineInformationInJSONformat(message);
 				DebugMessages.line();
@@ -136,7 +136,7 @@ public class MyGlimpseSmartCampusProbe extends GlimpseAbstractProbe {
 	private void generateAndSendExample_GlimpseBaseEvents_SmartBuildingPayload() {
 
 		DebugMessages.ok();
-		DebugMessages.print(System.currentTimeMillis(), MyGlimpseSmartCampusProbe.class.getSimpleName(),"Creating GlimpseBaseEventSB message");
+		DebugMessages.print(System.currentTimeMillis(), MyGlimpseBiecoCanProbe.class.getSimpleName(),"Creating GlimpseBaseEventSB message");
 		GlimpseBaseEventSB<Float> message;
 		DebugMessages.ok();
 		DebugMessages.line();
@@ -147,7 +147,7 @@ public class MyGlimpseSmartCampusProbe extends GlimpseAbstractProbe {
 			try {
 				this.sendEventMessage(message, false);
 				DebugMessages.println(System.currentTimeMillis(),
-					MyGlimpseSmartCampusProbe.class.getSimpleName(),
+					MyGlimpseBiecoCanProbe.class.getSimpleName(),
 					"GlimpseBaseEventSB message sent: {\n"
 							+ "sensorName: " + message.getProbeID() + "\n"
 							+ "parameterName: " + message.getEventName() + "\n"
@@ -163,7 +163,7 @@ public class MyGlimpseSmartCampusProbe extends GlimpseAbstractProbe {
 		}
 
 	private void generateAndSendExample_GlimpseBaseEvents_FaceRecognitionPayload() {
-		DebugMessages.print(System.currentTimeMillis(), MyGlimpseSmartCampusProbe.class.getSimpleName(),"Creating GlimpseBaseEventFaceRecognition message");
+		DebugMessages.print(System.currentTimeMillis(), MyGlimpseBiecoCanProbe.class.getSimpleName(),"Creating GlimpseBaseEventFaceRecognition message");
 		GlimpseBaseEventFaceRecognition<Boolean> message;
 		DebugMessages.ok();
 		DebugMessages.line();
@@ -175,7 +175,7 @@ public class MyGlimpseSmartCampusProbe extends GlimpseAbstractProbe {
 			try {
 				this.sendEventMessage(message, false);
 				DebugMessages.println(System.currentTimeMillis(),
-					MyGlimpseSmartCampusProbe.class.getSimpleName(),
+					MyGlimpseBiecoCanProbe.class.getSimpleName(),
 					"GlimpseBaseEventFaceRecognition message sent: {\n"
 							+ "cameraName: " + message.getProbeID() + "\n"
 							+ "macAddress: " + message.getEventName() + "\n"

@@ -31,20 +31,17 @@ import javax.jms.JMSException;
 import javax.naming.NamingException;
 
 import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEvent;
-import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEventFaceRecognition;
-import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEventMachineInformation;
-import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEventSB;
+import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEventCAN;
 import it.cnr.isti.labsedc.glimpse.probe.GlimpseAbstractProbe;
 import it.cnr.isti.labsedc.glimpse.utils.DebugMessages;
 import it.cnr.isti.labsedc.glimpse.utils.Manager;
-import it.cnr.isti.labsedc.glimpse.utils.SensorType;
 
 public class MyGlimpseBiecoCanProbe extends GlimpseAbstractProbe {
 
 	/**
 	 * This class provides an example of how to send messages (events) to Glimpse CEP.
 	 * @author Antonello Calabr&ograve;
-	 * @version 3.3.2
+	 * @version 3.3.3
 	 *
 	 */
 
@@ -71,56 +68,18 @@ public class MyGlimpseBiecoCanProbe extends GlimpseAbstractProbe {
 								false,
 								"probeName",
 								"it.cnr.isti.labsedc.glimpse,java.lang,javax.security,java.util",
-								"/home/acalabro/workspace/GlimpseSmartCampusProbe/probe.ks",
-								"/home/acalabro/workspace/GlimpseSmartCampusProbe/probe.ts",
+								"/home/acalabro/workspace/GlimpseBiecoCanProbe/probe.ks",
+								"/home/acalabro/workspace/GlimpseBiecoCanProbe/probe.ts",
 								"n1hehe", "n1hehe"));
 
 		//sending events
 		try {
-//				aGenericProbe.generateAndSendExample_GlimpseBaseEvents_SmartBuildingPayload();
-//				aGenericProbe.generateAndSendExample_GlimpseBaseEvents_FaceRecognitionPayload();
 			int i = 0;
 			while (i < 1000000) {
-			aGenericProbe.generateAndSendExample_GlimpseBaseEvents_EventMachineInformationPayload();
+			aGenericProbe.generateAndSendExample_GlimpseBaseEvents_CanBusPayload();
 			i++;
 			}
 		} catch (IndexOutOfBoundsException e) {}
-	}
-
-	private void generateAndSendExample_GlimpseBaseEvents_EventMachineInformationPayload() {
-		DebugMessages.ok();
-		DebugMessages.print(System.currentTimeMillis(),
-				MyGlimpseBiecoCanProbe.class.getSimpleName(),
-				"Creating GlimpseBaseMachineInformation message");
-		GlimpseBaseEventMachineInformation<String> message;
-		DebugMessages.ok();
-		DebugMessages.line();
-
-		message = new GlimpseBaseEventMachineInformation<String>(
-				System.getProperty("os.name"),
-				this.getClass().getCanonicalName(),
-				System.currentTimeMillis(),
-				"EventMachineInformationEvent",
-				false,
-				"noExtraFields",
-				"Available cpu: " + String.valueOf(Runtime.getRuntime().availableProcessors()),
-				(new Double(getProcessCpuLoad()).longValue()),
-				Runtime.getRuntime().freeMemory()/1024,
-				Runtime.getRuntime().totalMemory()/1024,
-				0l,
-				0l,
-				0l,
-				0l);
-
-			try {
-				this.sendEventMessage(message, false);
-				DebugMessages.println(System.currentTimeMillis(), MyGlimpseBiecoCanProbe.class.getSimpleName(),
-					"GlimpseBaseEventMachineInformation message sent");
-				DebugMessages.printlnMachineInformationInJSONformat(message);
-				DebugMessages.line();
-			} catch (JMSException | NamingException e) {
-				e.printStackTrace();
-			}
 	}
 
 	public static double getProcessCpuLoad() {
@@ -133,16 +92,16 @@ public class MyGlimpseBiecoCanProbe extends GlimpseAbstractProbe {
 	public void sendMessage(GlimpseBaseEvent<?> event, boolean debug) {
 	}
 
-	private void generateAndSendExample_GlimpseBaseEvents_SmartBuildingPayload() {
+	private void generateAndSendExample_GlimpseBaseEvents_CanBusPayload() {
 
 		DebugMessages.ok();
 		DebugMessages.print(System.currentTimeMillis(), MyGlimpseBiecoCanProbe.class.getSimpleName(),"Creating GlimpseBaseEventSB message");
-		GlimpseBaseEventSB<Float> message;
+		GlimpseBaseEventCAN<String> message;
 		DebugMessages.ok();
 		DebugMessages.line();
 
-		message = new GlimpseBaseEventSB<Float>(64f, "HumiditySensorName",
-						System.currentTimeMillis(),	"Humidity",	false, "i-30", SensorType.HUMIDITY);
+		message = new GlimpseBaseEventCAN<String>("canMess", "CanBusArduinoSensor",
+						System.currentTimeMillis(),	"Canbus Message",	false, "CANID");
 
 			try {
 				this.sendEventMessage(message, false);
@@ -153,38 +112,8 @@ public class MyGlimpseBiecoCanProbe extends GlimpseAbstractProbe {
 							+ "parameterName: " + message.getEventName() + "\n"
 							+ "parameterValue: " + message.getEventData() + "\n"
 							+ "timestamp: " + message.getTimeStamp() + "\n"
-							+ "roomID: " + message.getExtraDataField() + "\n"
-							+ "sensorType: " + message.getSensorType().toString() + "\n"
+							+ "canID: " + message.getExtraDataField() + "\n"
 							+"}");
-				DebugMessages.line();
-			} catch (JMSException | NamingException e) {
-				e.printStackTrace();
-			}
-		}
-
-	private void generateAndSendExample_GlimpseBaseEvents_FaceRecognitionPayload() {
-		DebugMessages.print(System.currentTimeMillis(), MyGlimpseBiecoCanProbe.class.getSimpleName(),"Creating GlimpseBaseEventFaceRecognition message");
-		GlimpseBaseEventFaceRecognition<Boolean> message;
-		DebugMessages.ok();
-		DebugMessages.line();
-
-		message = new GlimpseBaseEventFaceRecognition<Boolean>(
-				false, "CameraName", System.currentTimeMillis(),
-				"StringParameterAvailable", false, "i-30", "Unknown", "IDScreenshot");
-
-			try {
-				this.sendEventMessage(message, false);
-				DebugMessages.println(System.currentTimeMillis(),
-					MyGlimpseBiecoCanProbe.class.getSimpleName(),
-					"GlimpseBaseEventFaceRecognition message sent: {\n"
-							+ "cameraName: " + message.getProbeID() + "\n"
-							+ "macAddress: " + message.getEventName() + "\n"
-							+ "recognitionValue: " + message.getEventData() + "\n"
-							+ "timestamp: " + message.getTimeStamp() + "\n"
-							+ "roomID: " + message.getExtraDataField() + "\n"
-							+ "personID: " + message.getPersonID() + "\n"
-							+ "idScreenshot: " + message.getIDScreenshot()+ "\n"
-							+ "}");
 				DebugMessages.line();
 			} catch (JMSException | NamingException e) {
 				e.printStackTrace();

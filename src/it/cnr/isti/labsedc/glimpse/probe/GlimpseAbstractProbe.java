@@ -40,7 +40,6 @@ import org.apache.activemq.ActiveMQSslConnectionFactory;
 
 import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEvent;
 import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEventAbstract;
-import it.cnr.isti.labsedc.glimpse.probe.GlimpseProbe;
 import it.cnr.isti.labsedc.glimpse.utils.DebugMessages;
 import it.cnr.isti.labsedc.glimpse.utils.Manager;
 

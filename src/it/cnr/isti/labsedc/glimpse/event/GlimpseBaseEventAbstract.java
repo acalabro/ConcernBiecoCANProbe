@@ -23,8 +23,6 @@ package it.cnr.isti.labsedc.glimpse.event;
 
 import java.io.Serializable;
 
-import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEvent;
-
 /**
  * 
  * This class is a possible implementation (extension) of the {@link GlimpseBaseEvent} class.<br /><br /> 

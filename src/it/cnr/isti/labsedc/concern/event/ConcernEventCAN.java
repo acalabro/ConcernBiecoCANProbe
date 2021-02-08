@@ -1,10 +1,10 @@
-package it.cnr.isti.labsedc.glimpse.event;
+package it.cnr.isti.labsedc.concern.event;
 
-public class GlimpseBaseEventCAN<T> extends GlimpseBaseEventGeneric<String> {
+public class ConcernEventCAN<T> extends ConcernSimpleEventGeneric<String> {
 
 	private static final long serialVersionUID = 1L;
 
-	public GlimpseBaseEventCAN(
+	public ConcernEventCAN(
 			String canMessageValue,
 			String sensorName,
 			Long timeStamp,

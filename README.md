@@ -1,9 +1,9 @@
-GlimpseBiecoCanProbe
+ConcernBiecoCanProbe
 ====================
 
 Information   | Value
 ------------- | --------
-Package       | it.cnr.isti.labsedc.glimpse
+Package       | it.cnr.isti.labsedc.concern
 Roadmap       | TBD
 Language      | Java
 

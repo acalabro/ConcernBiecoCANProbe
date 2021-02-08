@@ -18,21 +18,21 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   * 
 */
-package it.cnr.isti.labsedc.glimpse.probe;
+package it.cnr.isti.labsedc.concern.probe;
 
-import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernSimpleEvent;
 
 /**
  * 
- * The interface {@link GlimpseProbeInterface} contains the event that a generic probe<br />
+ * The interface {@link GlimpseProbe} contains the event that a generic probe<br />
  * must implement to generate events.
  * 
- *  The behaviour of a Probe is defined in {@link GlimpseProbe}
+ *  The behaviour of a Probe is defined in {@link GlimpseAbstractProbe}
  * 
  * @author acalabro
  *
  */
-public interface GlimpseProbeInterface {
+public interface ConcernProbe {
 
-	public void sendMessage(GlimpseBaseEvent<?> event, boolean debug);
+	void sendMessage(ConcernSimpleEvent<?> event, boolean debug);
 }

@@ -1,12 +1,12 @@
-package it.cnr.isti.labsedc.glimpse.event;
+package it.cnr.isti.labsedc.concern.event;
 
-public class GlimpseBaseEventGeneric<T> extends GlimpseBaseEventAbstract<T> {
+public class ConcernSimpleEventGeneric<T> extends ConcernSimpleEventAbstract<T> {
 
 	private static final long serialVersionUID = 8661064245254655648L;
 	private String probeID;	
 	private String extraDataField;
 	
-	public GlimpseBaseEventGeneric(T data, String probeID, Long timeStamp, String eventName,
+	public ConcernSimpleEventGeneric(T data, String probeID, Long timeStamp, String eventName,
 			boolean isException, String extraDataField) {
 		
 		super(data, timeStamp, eventName, isException);

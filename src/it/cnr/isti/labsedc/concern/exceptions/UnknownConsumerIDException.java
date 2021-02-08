@@ -19,7 +19,7 @@
   * 
 */
 
-package it.cnr.isti.labsedc.glimpse.exceptions;
+package it.cnr.isti.labsedc.concern.exceptions;
 
 /**
  * This exception will be thrown when the Monitoring Manager<br />

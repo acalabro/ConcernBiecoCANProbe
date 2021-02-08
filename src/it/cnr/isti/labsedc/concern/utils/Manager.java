@@ -1,4 +1,4 @@
-package it.cnr.isti.labsedc.glimpse.utils;
+package it.cnr.isti.labsedc.concern.utils;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import it.cnr.isti.labsedc.glimpse.probe.GlimpseAbstractProbe;
+import it.cnr.isti.labsedc.concern.probe.ConcernAbstractProbe;
 
 /**
  * This class should be used only for debug purpose<br />
@@ -149,7 +149,7 @@ public class Manager
 			String keyStorePassword,
 			String trustStorePassword) {
 		if (debug)
-			DebugMessages.print(System.currentTimeMillis(),GlimpseAbstractProbe.class.getSimpleName(),
+			DebugMessages.print(System.currentTimeMillis(),ConcernAbstractProbe.class.getSimpleName(),
 			"Creating Properties object ");
 		Properties settings = new Properties();
 		settings.setProperty("java.naming.factory.initial",javaNamingFactoryInitial);

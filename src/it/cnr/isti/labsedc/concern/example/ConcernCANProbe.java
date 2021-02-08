@@ -19,7 +19,7 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   *
 */
-package it.cnr.isti.labsedc.glimpse.example;
+package it.cnr.isti.labsedc.concern.example;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
@@ -30,13 +30,13 @@ import java.util.Random;
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 
-import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEvent;
-import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEventCAN;
-import it.cnr.isti.labsedc.glimpse.probe.GlimpseAbstractProbe;
-import it.cnr.isti.labsedc.glimpse.utils.DebugMessages;
-import it.cnr.isti.labsedc.glimpse.utils.Manager;
+import it.cnr.isti.labsedc.concern.event.ConcernEventCAN;
+import it.cnr.isti.labsedc.concern.event.ConcernSimpleEvent;
+import it.cnr.isti.labsedc.concern.probe.ConcernAbstractProbe;
+import it.cnr.isti.labsedc.concern.utils.DebugMessages;
+import it.cnr.isti.labsedc.concern.utils.Manager;
 
-public class MyGlimpseBiecoCanProbe extends GlimpseAbstractProbe {
+public class ConcernCANProbe extends ConcernAbstractProbe {
 
 	/**
 	 * This class provides an example of how to send messages (events) to Glimpse CEP.
@@ -48,11 +48,10 @@ public class MyGlimpseBiecoCanProbe extends GlimpseAbstractProbe {
 	public static int sendingInterval = 10000;
 	public static String parameterName;
 	public static float parameterValue;
-	public static String roomID;
 	public static String sensorName;
 	public static Random rand = new Random();
 
-	public MyGlimpseBiecoCanProbe(Properties settings) {
+	public ConcernCANProbe(Properties settings) {
 		super(settings);
 	}
 
@@ -60,7 +59,7 @@ public class MyGlimpseBiecoCanProbe extends GlimpseAbstractProbe {
 
 		//creating a probe
 		DebugMessages.line();
-		MyGlimpseBiecoCanProbe aGenericProbe = new MyGlimpseBiecoCanProbe(
+		ConcernCANProbe aGenericProbe = new ConcernCANProbe(
 				Manager.createProbeSettingsPropertiesObject("org.apache.activemq.jndi.ActiveMQInitialContextFactory",
 								//"ssl://146.48.77.37:61617","system", "manager","TopicCF",
 							  "tcp://glimpse-dev.isti.cnr.it:61616","system", "manager","TopicCF",
@@ -89,24 +88,24 @@ public class MyGlimpseBiecoCanProbe extends GlimpseAbstractProbe {
 	}
 
 	@Override
-	public void sendMessage(GlimpseBaseEvent<?> event, boolean debug) {
+	public void sendMessage(ConcernSimpleEvent<?> event, boolean debug) {
 	}
 
 	private void generateAndSendExample_GlimpseBaseEvents_CanBusPayload() {
 
 		DebugMessages.ok();
-		DebugMessages.print(System.currentTimeMillis(), MyGlimpseBiecoCanProbe.class.getSimpleName(),"Creating GlimpseBaseEventSB message");
-		GlimpseBaseEventCAN<String> message;
+		DebugMessages.print(System.currentTimeMillis(), ConcernCANProbe.class.getSimpleName(),"Creating GlimpseBaseEventSB message");
+		ConcernEventCAN<String> message;
 		DebugMessages.ok();
 		DebugMessages.line();
 
-		message = new GlimpseBaseEventCAN<String>("canMess", "CanBusArduinoSensor",
+		message = new ConcernEventCAN<String>("canMess", "CanBusArduinoSensor",
 						System.currentTimeMillis(),	"Canbus Message",	false, "CANID");
 
 			try {
 				this.sendEventMessage(message, false);
 				DebugMessages.println(System.currentTimeMillis(),
-					MyGlimpseBiecoCanProbe.class.getSimpleName(),
+						ConcernCANProbe.class.getSimpleName(),
 					"GlimpseBaseEventSB message sent: {\n"
 							+ "sensorName: " + message.getProbeID() + "\n"
 							+ "parameterName: " + message.getEventName() + "\n"

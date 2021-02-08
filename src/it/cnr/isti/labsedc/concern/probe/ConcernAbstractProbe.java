@@ -19,7 +19,7 @@
   *
 */
 
-package it.cnr.isti.labsedc.glimpse.probe;
+package it.cnr.isti.labsedc.concern.probe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,22 +38,22 @@ import javax.naming.NamingException;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.ActiveMQSslConnectionFactory;
 
-import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEvent;
-import it.cnr.isti.labsedc.glimpse.event.GlimpseBaseEventAbstract;
-import it.cnr.isti.labsedc.glimpse.utils.DebugMessages;
-import it.cnr.isti.labsedc.glimpse.utils.Manager;
+import it.cnr.isti.labsedc.concern.event.ConcernSimpleEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernSimpleEventAbstract;
+import it.cnr.isti.labsedc.concern.utils.DebugMessages;
+import it.cnr.isti.labsedc.concern.utils.Manager;
 
 
 /**
  * This class represent a generic implementation of the interface {@link GlimpseProbe}.<br />
- * It provides the abstract method: {@link #sendMessage(GlimpseBaseEvent, boolean)}<br />
+ * It provides the abstract method: {@link #sendMessage(ConcernSimpleEvent, boolean)}<br />
  * that can be extended if needed.<br />
  *
  * @author Antonello Calabr&ograve;
  * @version 3.2
  *
  */
-public abstract class GlimpseAbstractProbe implements GlimpseProbe {
+public abstract class ConcernAbstractProbe implements ConcernProbe {
 
 	protected static InitialContext initContext;
 	protected static TopicSession publishSession;
@@ -72,7 +72,7 @@ public abstract class GlimpseAbstractProbe implements GlimpseProbe {
 	 * @throws InterruptedException
 	 *
 	 */
-	public GlimpseAbstractProbe(Properties settings) {
+	public ConcernAbstractProbe(Properties settings) {
 
 		while (retry) {
 			try {
@@ -230,10 +230,10 @@ public abstract class GlimpseAbstractProbe implements GlimpseProbe {
 		}
 
 
-	public abstract void sendMessage(GlimpseBaseEvent<?> event, boolean debug);
+	public abstract void sendMessage(ConcernSimpleEvent<?> event, boolean debug);
 
 	/**
-	 * This method send a {@link GlimpseBaseEvent} message on the ESB<br />
+	 * This method send a {@link ConcernSimpleEvent} message on the ESB<br />
 	 * specifically on the channel specified in the {@link #settings} object.
 	 *
 	 * @param event the event to send
@@ -241,7 +241,7 @@ public abstract class GlimpseAbstractProbe implements GlimpseProbe {
 	 * @throws JMSException
 	 * @throws NamingException
 	 */
-	protected void sendEventMessage(GlimpseBaseEventAbstract<?> event, boolean debug) throws JMSException,
+	protected void sendEventMessage(ConcernSimpleEventAbstract<?> event, boolean debug) throws JMSException,
 			NamingException {
 		if (debug) {
 			DebugMessages.print(System.currentTimeMillis(), this.getClass().getSimpleName(),

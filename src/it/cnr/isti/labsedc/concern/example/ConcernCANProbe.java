@@ -1,24 +1,3 @@
- /*
-  * GLIMPSE: A generic and flexible monitoring infrastructure.
-
-  * For further information: http://labsewiki.isti.cnr.it/labse/tools/glimpse/public/main
-  *
-  * Copyright (C) 2015  Software Engineering Laboratory - ISTI CNR - Pisa - Italy
-  *
-  * This program is free software: you can redistribute it and/or modify
-  * it under the terms of the GNU General Public License as published by
-  * the Free Software Foundation, either version 3 of the License, or
-  * (at your option) any later version.
-  *
-  * This program is distributed in the hope that it will be useful,
-  * but WITHOUT ANY WARRANTY; without even the implied warranty of
-  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  * GNU General Public License for more details.
-  *
-  * You should have received a copy of the GNU General Public License
-  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  *
-*/
 package it.cnr.isti.labsedc.concern.example;
 
 import java.lang.management.ManagementFactory;
@@ -39,9 +18,9 @@ import it.cnr.isti.labsedc.concern.utils.Manager;
 public class ConcernCANProbe extends ConcernAbstractProbe {
 
 	/**
-	 * This class provides an example of how to send messages (events) to Glimpse CEP.
+	 * This class provides an example of how to send messages (events) to Concern CEP.
 	 * @author Antonello Calabr&ograve;
-	 * @version 3.3.3
+	 * @version 0.0.1
 	 *
 	 */
 
@@ -66,16 +45,16 @@ public class ConcernCANProbe extends ConcernAbstractProbe {
 								"jms.probeTopic",
 								false,
 								"probeName",
-								"it.cnr.isti.labsedc.glimpse,java.lang,javax.security,java.util",
-								"/home/acalabro/workspace/GlimpseBiecoCanProbe/probe.ks",
-								"/home/acalabro/workspace/GlimpseBiecoCanProbe/probe.ts",
+								"it.cnr.isti.labsedc.concern,java.lang,javax.security,java.util",
+								"/home/acalabro/workspace/ConcernBiecoCanProbe/probe.ks",
+								"/home/acalabro/workspace/ConcernBiecoCanProbe/probe.ts",
 								"n1hehe", "n1hehe"));
 
 		//sending events
 		try {
 			int i = 0;
 			while (i < 1000000) {
-			aGenericProbe.generateAndSendExample_GlimpseBaseEvents_CanBusPayload();
+			aGenericProbe.generateAndSendExample_ConcernBaseEvents_CanBusPayload();
 			i++;
 			}
 		} catch (IndexOutOfBoundsException e) {}
@@ -91,10 +70,10 @@ public class ConcernCANProbe extends ConcernAbstractProbe {
 	public void sendMessage(ConcernSimpleEvent<?> event, boolean debug) {
 	}
 
-	private void generateAndSendExample_GlimpseBaseEvents_CanBusPayload() {
+	private void generateAndSendExample_ConcernBaseEvents_CanBusPayload() {
 
 		DebugMessages.ok();
-		DebugMessages.print(System.currentTimeMillis(), ConcernCANProbe.class.getSimpleName(),"Creating GlimpseBaseEventSB message");
+		DebugMessages.print(System.currentTimeMillis(), ConcernCANProbe.class.getSimpleName(),"Creating ConcernBiecoCanProbe message");
 		ConcernEventCAN<String> message;
 		DebugMessages.ok();
 		DebugMessages.line();

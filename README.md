@@ -1,4 +1,4 @@
-ConcernBiecoCanProbe
+ConcernBiecoCANProbe
 ====================
 
 Information   | Value

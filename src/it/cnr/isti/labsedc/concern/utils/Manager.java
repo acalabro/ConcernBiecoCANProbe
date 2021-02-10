@@ -9,16 +9,6 @@ import java.util.Properties;
 
 import it.cnr.isti.labsedc.concern.probe.ConcernAbstractProbe;
 
-/**
- * This class should be used only for debug purpose<br />
- * because uses deprecated methods.
- * Helps to read text from files and to generate<br />
- * Properties object
- *  
- * @author Antonello Calabr&ograve;
- * @version 3.2
- * 
- */
 public class Manager
 {
 	/**

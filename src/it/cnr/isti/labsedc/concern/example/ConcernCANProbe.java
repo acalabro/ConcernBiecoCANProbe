@@ -10,7 +10,7 @@ import javax.jms.JMSException;
 import javax.naming.NamingException;
 
 import it.cnr.isti.labsedc.concern.event.ConcernEventCAN;
-import it.cnr.isti.labsedc.concern.event.ConcernSimpleEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.probe.ConcernAbstractProbe;
 import it.cnr.isti.labsedc.concern.utils.DebugMessages;
 import it.cnr.isti.labsedc.concern.utils.Manager;
@@ -40,21 +40,21 @@ public class ConcernCANProbe extends ConcernAbstractProbe {
 		DebugMessages.line();
 		ConcernCANProbe aGenericProbe = new ConcernCANProbe(
 				Manager.createProbeSettingsPropertiesObject("org.apache.activemq.jndi.ActiveMQInitialContextFactory",
-								//"ssl://146.48.77.37:61617","system", "manager","TopicCF",
-							  "tcp://glimpse-dev.isti.cnr.it:61616","system", "manager","TopicCF",
+							  "tcp://127.0.0.1:61616","system", "manager","TopicCF",
 								"jms.probeTopic",
 								false,
 								"probeName",
 								"it.cnr.isti.labsedc.concern,java.lang,javax.security,java.util",
 								"/home/acalabro/workspace/ConcernBiecoCanProbe/probe.ks",
 								"/home/acalabro/workspace/ConcernBiecoCanProbe/probe.ts",
-								"n1hehe", "n1hehe"));
+								"vera", "griselda"));
 
 		//sending events
 		try {
 			int i = 0;
 			while (i < 1000000) {
 			aGenericProbe.generateAndSendExample_ConcernBaseEvents_CanBusPayload();
+			Thread.sleep(5000);
 			i++;
 			}
 		} catch (IndexOutOfBoundsException e) {}
@@ -67,7 +67,7 @@ public class ConcernCANProbe extends ConcernAbstractProbe {
 	}
 
 	@Override
-	public void sendMessage(ConcernSimpleEvent<?> event, boolean debug) {
+	public void sendMessage(ConcernAbstractEvent<?> event, boolean debug) {
 	}
 
 	private void generateAndSendExample_ConcernBaseEvents_CanBusPayload() {
@@ -79,18 +79,18 @@ public class ConcernCANProbe extends ConcernAbstractProbe {
 		DebugMessages.line();
 
 		message = new ConcernEventCAN<String>("canMess", "CanBusArduinoSensor",
-						System.currentTimeMillis(),	"Canbus Message",	false, "CANID");
+						System.currentTimeMillis(),	"Canbus Message",	"chceksum", "CANID");
 
 			try {
 				this.sendEventMessage(message, false);
 				DebugMessages.println(System.currentTimeMillis(),
 						ConcernCANProbe.class.getSimpleName(),
-					"GlimpseBaseEventSB message sent: {\n"
-							+ "sensorName: " + message.getProbeID() + "\n"
-							+ "parameterName: " + message.getEventName() + "\n"
+					"ConcernEventCAN message sent: {\n"
+							+ "senderID: " + message.getSenderID() + "\n"
+							+ "canID: " + message.getCanID() + "\n"
 							+ "parameterValue: " + message.getEventData() + "\n"
-							+ "timestamp: " + message.getTimeStamp() + "\n"
-							+ "canID: " + message.getExtraDataField() + "\n"
+							+ "timestamp: " + message.getTimestamp() + "\n"
+							+ "checksum: " + message.getChecksum() + "\n"
 							+"}");
 				DebugMessages.line();
 			} catch (JMSException | NamingException e) {

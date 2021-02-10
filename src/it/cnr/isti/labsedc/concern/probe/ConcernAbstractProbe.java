@@ -1,24 +1,3 @@
- /*
-  * GLIMPSE: A generic and flexible monitoring infrastructure.
-  * For further information: http://labsewiki.isti.cnr.it/labse/tools/glimpse/public/main
-  *
-  * Copyright (C) 2011  Software Engineering Laboratory - ISTI CNR - Pisa - Italy
-  *
-  * This program is free software: you can redistribute it and/or modify
-  * it under the terms of the GNU General Public License as published by
-  * the Free Software Foundation, either version 3 of the License, or
-  * (at your option) any later version.
-  *
-  * This program is distributed in the hope that it will be useful,
-  * but WITHOUT ANY WARRANTY; without even the implied warranty of
-  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  * GNU General Public License for more details.
-  *
-  * You should have received a copy of the GNU General Public License
-  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  *
-*/
-
 package it.cnr.isti.labsedc.concern.probe;
 
 import java.util.ArrayList;
@@ -38,21 +17,10 @@ import javax.naming.NamingException;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.ActiveMQSslConnectionFactory;
 
-import it.cnr.isti.labsedc.concern.event.ConcernSimpleEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernSimpleEventAbstract;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.utils.DebugMessages;
 import it.cnr.isti.labsedc.concern.utils.Manager;
 
-
-/**
- * This class represent a generic implementation of the interface {@link GlimpseProbe}.<br />
- * It provides the abstract method: {@link #sendMessage(ConcernSimpleEvent, boolean)}<br />
- * that can be extended if needed.<br />
- *
- * @author Antonello Calabr&ograve;
- * @version 3.2
- *
- */
 public abstract class ConcernAbstractProbe implements ConcernProbe {
 
 	protected static InitialContext initContext;
@@ -230,7 +198,7 @@ public abstract class ConcernAbstractProbe implements ConcernProbe {
 		}
 
 
-	public abstract void sendMessage(ConcernSimpleEvent<?> event, boolean debug);
+	public abstract void sendMessage(ConcernAbstractEvent<?> event, boolean debug);
 
 	/**
 	 * This method send a {@link ConcernSimpleEvent} message on the ESB<br />
@@ -241,7 +209,7 @@ public abstract class ConcernAbstractProbe implements ConcernProbe {
 	 * @throws JMSException
 	 * @throws NamingException
 	 */
-	protected void sendEventMessage(ConcernSimpleEventAbstract<?> event, boolean debug) throws JMSException,
+	protected void sendEventMessage(ConcernAbstractEvent<?> event, boolean debug) throws JMSException,
 			NamingException {
 		if (debug) {
 			DebugMessages.print(System.currentTimeMillis(), this.getClass().getSimpleName(),

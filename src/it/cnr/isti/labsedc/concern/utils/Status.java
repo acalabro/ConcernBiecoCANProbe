@@ -1,12 +1,5 @@
 package it.cnr.isti.labsedc.concern.utils;
 
-/**
- * This class is used to get the Monitoring Engine status.
- * 
- * @author Antonello Calabr&ograve;
- * @version 0.1
- *
- */
 public enum Status {
 		/**
 		 * STARTING - The monitoring is booting up

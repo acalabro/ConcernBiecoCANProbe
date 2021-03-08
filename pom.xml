@@ -4,7 +4,7 @@
   <artifactId>ConcernProbe</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>ConcernProbe</name>
-  <description>A probe for sending events captured by arduino device.</description>
+  <description>A probe for sending events.</description>
   <url>-- NOT YET AVAILABLE --</url>
   <organization>
   	<name>LABSEDC - ISTI CNR</name>
@@ -48,7 +48,7 @@
 		<dependency>
 		  	<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-all</artifactId>
-			<version>5.15.6</version>
+			<version>5.16.1</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.jms</groupId>
@@ -58,13 +58,13 @@
 	  			<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20151123</version>
+			<version>20201115</version>
 		</dependency>
 
 	<dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
- 	<version>[2.9.10.7,)</version>
+ 	<version>2.12.2</version>
     </dependency>
     
   </dependencies>

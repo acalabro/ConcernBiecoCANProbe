@@ -1,4 +1,4 @@
-ConcernBiecoCANProbe
+ConcernProbe
 ====================
 
 Information   | Value
@@ -8,7 +8,7 @@ Roadmap       | TBD
 Language      | Java
 
 # Summary
-A probe for sending events captured by arduino device connected to a car canbus.
+A probe for sending events .
 
 # How it works?
 Based on Publish Subscribe paradigm.

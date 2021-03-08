@@ -25,7 +25,7 @@ public class Probe {
 			ObjectMessage msg = session.createObjectMessage();
 			ConcernCANbusEvent<String> event;
 			
-			for (int i = 0; i<5000; i++) {
+			for (int i = 0; i<50; i++) {
 				event = new ConcernCANbusEvent<String>(
 					canData+i,
 					CepType.DROOLS,
@@ -52,7 +52,5 @@ public class Probe {
 		testProbe(brokerUrl, "EventChannel-THREE", "vera", "griselda", "messageCANTHREE");
 //		Thread.sleep(500);
 		testProbe(brokerUrl, "EventChannel-FOUR", "vera", "griselda", "messageCANFOUR");
-//		Thread.sleep(500);
-//		testProducer(brokerUrl, "ServiceChannel-FIVE", "vera", "griselda");
 	}
 }
